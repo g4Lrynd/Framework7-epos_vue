@@ -1,0 +1,40 @@
+{
+  "cwd": "/home/zakiechan/devel/epos_vue",
+  "type": [
+    "web",
+    "cordova"
+  ],
+  "name": "project_epos",
+  "pkg": "io.framework7.myapp",
+  "framework": "vue",
+  "template": "split-view",
+  "cssPreProcessor": "less",
+  "bundler": "webpack",
+  "cordova": {
+    "folder": "cordova",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "plugins": [
+      "cordova-plugin-statusbar",
+      "cordova-plugin-keyboard",
+      "cordova-plugin-splashscreen"
+    ]
+  },
+  "webpack": {
+    "developmentSourceMap": true,
+    "productionSourceMap": true,
+    "hashAssets": false,
+    "preserveAssetsPaths": false,
+    "inlineAssets": true
+  },
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkTheme": false,
+    "iconFonts": true,
+    "fillBars": false
+  },
+  "customBuild": false
+}
