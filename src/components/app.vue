@@ -9,13 +9,10 @@
 
           <f7-page-content style="margin: 0em; padding: 0em; height: 55%">
             <f7-list style="margin: 0em;">
-              <f7-list-item title="Left Page 1"></f7-list-item>
-              <f7-list-item title="Left Page 1"></f7-list-item>
-              <f7-list-item title="Left Page 1"></f7-list-item>
-              <f7-list-item title="Left Page 1"></f7-list-item>
-              <f7-list-item title="Left Page 1"></f7-list-item>
-              <f7-list-item title="Left Page 1"></f7-list-item>
-              <f7-list-item title="Left Page 1"></f7-list-item>
+              <f7-list-item title="item"></f7-list-item>
+              <f7-list-item title="item"></f7-list-item>
+              
+              
             </f7-list>
 
           </f7-page-content>
@@ -23,42 +20,42 @@
         
 
         <f7-block strong bottom style="padding-right: 13%; padding-left: 13%; margin: 3px; position: fixed; width: 100%; bottom: 0;">
-          <f7-block-title block-title type="number" style="margin-bottom: 10px; padding: 5px; font-size: 1.3em; ">£ {{ output }}</f7-block-title>
+          <f7-block-title block-title type="number" style="margin-bottom: 10px; padding: 5px; font-size: 1.3em; ">£{{ current || '0.00' }}</f7-block-title>
 
           <f7-row>
               <f7-col>
-                <f7-button fill color="gray" id="keypad7">7</f7-button>
+                <f7-button fill color="gray" v-on:click="keypad(7)">7</f7-button>
                 <br>
-                <f7-button fill color="gray" id="keypad4">4</f7-button>
+                <f7-button fill color="gray" v-on:click="keypad(4)">4</f7-button>
                 <br>
-                <f7-button fill color="gray" id="keypad1">1</f7-button>
+                <f7-button fill color="gray" v-on:click="keypad(1)">1</f7-button>
                 <br>
-                <f7-button fill color="gray" id="keypad00">00</f7-button>
+                <f7-button fill color="gray" v-on:click="keypad(0)">00</f7-button>
               </f7-col>
 
               <f7-col>
-                <f7-button fill color="gray" id="keypad8">8</f7-button>
+                <f7-button fill color="gray" v-on:click="keypad(8)">8</f7-button>
                 <br>
-                <f7-button fill color="gray" id="keypad5">5</f7-button>
+                <f7-button fill color="gray" v-on:click="keypad(5)">5</f7-button>
                 <br>
-                <f7-button fill color="gray" id="keypad2">2</f7-button>
+                <f7-button fill color="gray" v-on:click="keypad(2)">2</f7-button>
                 <br>
-                <f7-button fill color="gray" id="keypad0">0</f7-button>
+                <f7-button fill color="gray" v-on:click="keypad(0)">0</f7-button>
               </f7-col>
 
               <f7-col>
-                <f7-button fill color="gray" id="keypad9">9</f7-button>
+                <f7-button fill color="gray" v-on:click="keypad(9)">9</f7-button>
                 <br>
-                <f7-button fill color="gray" id="keypad6">6</f7-button>
+                <f7-button fill color="gray" v-on:click="keypad(6)">6</f7-button>
                 <br>
-                <f7-button fill color="gray" id="keypad3">3</f7-button>
+                <f7-button fill color="gray" v-on:click="keypad(3)" id="3">3</f7-button>
                 <br>
-                <f7-button fill color="pink" id="keypadX" >X</f7-button>
+                <f7-button fill color="pink" v-on:click="" v-on:click="" >X</f7-button>
               </f7-col>
              </f7-row>
 
             <f7-block style="padding: 0em; margin-top: 20px; margin-bottom: 0px">
-              <f7-button fill color="green" v-on:click="output += 1">Cash</f7-button>
+              <f7-button fill color="green" v-on:click="reset">Cash</f7-button>
             </f7-block>
 
         </f7-block>
@@ -134,7 +131,7 @@
   import { Device }  from 'framework7/framework7-lite.esm.bundle.js';
   import cordovaApp from '../js/cordova-app.js';
   import routes from '../js/routes.js';
-  import test from '../js/test.js';
+  //import test from '../js/test.js';
 
   export default {
     data() {
@@ -166,7 +163,9 @@
         username: '',
         password: '',
 
-        output: test.theTotal(),
+        //keypad
+        current: '',
+           
       }
     },
     methods: {
@@ -174,8 +173,34 @@
         this.$f7.dialog.alert('Username: ' + this.username + '<br>Password: ' + this.password, () => {
           this.$f7.loginScreen.close();
         });
-      }
+      },
+
+      reset() {
+        this.current = '';
+      },
+
+      keypad(number) {
+        
+         
+          if(this.current < 0.001) {
+            this.current = `${this.current}${number}`
+            
+            this.current /= 100;
+            
+          }
+          //limits to £10,000.00
+          else if(this.current < 10000.0) {
+            this.current = `${this.current}${number}`
+
+            this.current *= 10;
+          }
+
+         this.current = (Math.round(this.current * 1000) / 1000).toFixed(2);
+         
+        }
+      
     },
+
     mounted() {
       this.$f7ready((f7) => {
         // Init cordova APIs (see cordova-app.js)
