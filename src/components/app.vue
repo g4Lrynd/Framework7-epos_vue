@@ -5,14 +5,13 @@
   <f7-panel right cover theme-dark :visible-breakpoint="960">
     <f7-view>
       <f7-page>
-        <f7-navbar title="Total: "></f7-navbar>
+        <f7-navbar title="Total: " >{{ '£' && total }}</f7-navbar>
 
-          <f7-page-content style="margin: 0em; padding: 0em; height: 55%">
+          <f7-page-content style="margin: 0em; padding: 0em; height: 60%">
             <f7-list style="margin: 0em;">
-              <f7-list-item title="item"></f7-list-item>
-              <f7-list-item title="item"></f7-list-item>
-              
-              
+              <f7-list-item v-for="item in items" :key="item.id" :title="item.name">
+                {{item.price}}
+              </f7-list-item>
             </f7-list>
 
           </f7-page-content>
@@ -20,7 +19,7 @@
         
 
         <f7-block strong bottom style="padding-right: 13%; padding-left: 13%; margin: 3px; position: fixed; width: 100%; bottom: 0;">
-          <f7-block-title block-title type="number" style="margin-bottom: 10px; padding: 5px; font-size: 1.3em; ">£{{ current || '0.00' }}</f7-block-title>
+          <f7-block-title block-title type="number" style="margin-bottom: 10px; padding: 5px; font-size: 1.4em; ">£{{ current || '0.00' }}</f7-block-title>
 
           <f7-row>
               <f7-col>
@@ -30,7 +29,7 @@
                 <br>
                 <f7-button fill color="gray" v-on:click="keypad(1)">1</f7-button>
                 <br>
-                <f7-button fill color="gray" v-on:click="keypad(0)">00</f7-button>
+                <f7-button fill color="gray" v-on:click="keypad()">00</f7-button>
               </f7-col>
 
               <f7-col>
@@ -50,7 +49,7 @@
                 <br>
                 <f7-button fill color="gray" v-on:click="keypad(3)" id="3">3</f7-button>
                 <br>
-                <f7-button fill color="pink" v-on:click="" v-on:click="" >X</f7-button>
+                <f7-button fill color="pink" v-on:click="subTotal()" >X</f7-button>
               </f7-col>
              </f7-row>
 
@@ -59,18 +58,7 @@
             </f7-block>
 
         </f7-block>
-       
-
-        <!--<f7-list>
-          <f7-list-item link="/left-page-1/" title="Left Page 1"></f7-list-item>
-          <f7-list-item link="/left-page-2/" title="Left Page 2"></f7-list-item>
-        </f7-list>
-        <f7-block-title>Control Main View</f7-block-title>
-        <f7-list>
-          <f7-list-item link="f7-buttonbout/" view=".view-main" panel-close title="About"></f7-list-item>
-          <f7-list-item link="/form/" view=".view-main" panel-close title="Form"></f7-list-item>
-          <f7-list-item link="#" view=".view-main" back panel-close title="Back in history"></f7-list-item>
-        </f7-list>-->
+      
       </f7-page>
     </f7-view>
   </f7-panel>
@@ -131,7 +119,7 @@
   import { Device }  from 'framework7/framework7-lite.esm.bundle.js';
   import cordovaApp from '../js/cordova-app.js';
   import routes from '../js/routes.js';
-  //import test from '../js/test.js';
+  import thing from '../js/items_checkout.js';
 
   export default {
     data() {
@@ -165,6 +153,12 @@
 
         //keypad
         current: '',
+
+        //subtotal
+        total: '',
+
+        //items currently chosen
+        items: thing.items,
            
       }
     },
@@ -179,19 +173,22 @@
         this.current = '';
       },
 
+      //testing purposes
+      subTotal() {
+        this.total = 100-this.current
+      },
+
       keypad(number) {
-        
-         
+
           if(this.current < 0.001) {
             this.current = `${this.current}${number}`
-            
             this.current /= 100;
             
           }
+
           //limits to £10,000.00
           else if(this.current < 10000.0) {
             this.current = `${this.current}${number}`
-
             this.current *= 10;
           }
 
@@ -200,7 +197,7 @@
         }
       
     },
-
+   
     mounted() {
       this.$f7ready((f7) => {
         // Init cordova APIs (see cordova-app.js)
