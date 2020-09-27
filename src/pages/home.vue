@@ -20,14 +20,14 @@
     <f7-block strong>
       <f7-row>
         <f7-col width="30">
-          <f7-button fill v-on:click="handleClick(0)">Maple</f7-button>
+          <f7-button fill v-on:click="addToItems(0)">Maple</f7-button>
         </f7-col>
         <f7-col width="30">
-          <f7-button fill v-on:click="items(1)">Chestnut</f7-button>
+          <f7-button fill v-on:click="addToItems(1)">Chestnut</f7-button>
         </f7-col>
         <f7-col width="30">
           <f7-col width="50">
-          <f7-button fill v-on:click="items(2)">Oak</f7-button>
+          <f7-button fill v-on:click="addToItems(2)">Oak</f7-button>
         </f7-col>
         </f7-col>
       </f7-row>
@@ -90,7 +90,7 @@
     },
     methods: {
 
-      handleClick(id) {
+      addToItems(id) {
         basket.getItem(id)
         }
       

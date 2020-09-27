@@ -7,7 +7,7 @@
       <f7-page>
         <f7-navbar title="Total: " >{{ '£' && total }}</f7-navbar>
 
-          <f7-page-content style="margin: 0em; padding: 0em; height: 60%">
+          <f7-page-content style="margin: 0em; padding: 0em; height: 38%">
             <f7-list style="margin: 0em;">
               <f7-list-item v-for="item in items" :key="item.id" :title="item.name">
                 {{item.price}}
