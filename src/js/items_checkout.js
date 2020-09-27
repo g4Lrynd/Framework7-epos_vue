@@ -1,19 +1,29 @@
 import menu from './menu.js'
 
 export default {
-
+    
+    subTotal: '',
     items: [],
-    getBasket() {
-        return items;
+    nextItemID: 4,
+
+    total() {
+        return this.subTotal;
     },
 
-    getItem(id) {
+    getItem(name) {
         for (var i = 0; i < menu.length; i+= 1) {
-            if (menu[i].id == id) {
-                this.items.push(menu[i]);
+            if (menu[i].name == name) {
+                this.items.push({  
+                    id: this.nextItemID++,
+                    name: menu[i].name,
+                    price: menu[i].price
+                });
+                
+                this.subTotal += menu[i].price;
+                console.log(this.subTotal);
                 
                 console.log(this.items);
             }
-        }
-    }
+        }    
+    } 
 }

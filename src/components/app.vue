@@ -5,12 +5,15 @@
   <f7-panel right cover theme-dark :visible-breakpoint="960">
     <f7-view>
       <f7-page>
-        <f7-navbar title="Total: " >{{ '£' && total }}</f7-navbar>
+        <f7-navbar title="Total: " >{{ '£' + roundTotal() }}</f7-navbar>
 
           <f7-page-content style="margin: 0em; padding: 0em; height: 38%">
-            <f7-list style="margin: 0em;">
-              <f7-list-item v-for="item in items" :key="item.id" :title="item.name">
-                {{item.price}}
+
+            <f7-list  style="margin: 0em;" >
+              <f7-list-item v-for="(item, index) in items" :key="item.id" :title="item.name" :after="'£' + item.price"swipeout>
+                <f7-swipeout-actions right>
+                  <f7-swipeout-button delete v-on:click="removeItem(index)">Delete</f7-swipeout-button>
+                </f7-swipeout-actions>
               </f7-list-item>
             </f7-list>
 
@@ -120,6 +123,7 @@
   import cordovaApp from '../js/cordova-app.js';
   import routes from '../js/routes.js';
   import thing from '../js/items_checkout.js';
+  import subTotal from '../js/items_checkout.js';
 
   export default {
     data() {
@@ -129,8 +133,6 @@
           id: 'io.framework7.myapp', // App bundle ID
           name: 'project_epos', // App name
           theme: 'auto', // Automatic theme detection
-
-
 
           // App routes
           routes: routes,
@@ -154,12 +156,12 @@
         //keypad
         current: '',
 
-        //subtotal
-        total: '',
-
         //items currently chosen
         items: thing.items,
-           
+        
+        //subtotal
+        total: '',
+        
       }
     },
     methods: {
@@ -169,25 +171,37 @@
         });
       },
 
-      reset() {
-        this.current = '';
+      removeItem(index) {
+
+        //const itemIndex = this.items.indexOf(item);
+        //this.items.splice(index, 1);
+        this.$delete(this.items, index)
+        console.log(this.items);
+        
       },
 
-      //testing purposes
-      subTotal() {
-        this.total = 100-this.current
+      roundTotal() {
+        this.total = (Math.round((this.items.reduce((acc, item) => acc + item.price, 0)) * 1000) / 1000).toFixed(2);
+        return this.total;
+      },
+
+      reset() {
+        
+        //thing.resetItems();
+        this.current = '';
+        console.log(this.test);
+        
       },
 
       keypad(number) {
 
-          if(this.current < 0.001) {
+          if (this.current < 0.001) {
             this.current = `${this.current}${number}`
-            this.current /= 100;
-            
+            this.current /= 100;    
           }
 
-          //limits to £10,000.00
-          else if(this.current < 10000.0) {
+          //limited to £10,000.00
+          else if (this.current < 10000.0) {
             this.current = `${this.current}${number}`
             this.current *= 10;
           }
