@@ -5,7 +5,7 @@
   <f7-panel right cover theme-dark :visible-breakpoint="960">
     <f7-view>
       <f7-page>
-        <f7-navbar title="Total: " >{{ '£' + roundTotal() }}</f7-navbar>
+        <f7-navbar title="Total:" >{{ '£' + roundTotal() }}</f7-navbar>
 
           <f7-page-content style="margin: 0em; padding: 0em; height: 38%">
 
@@ -123,7 +123,6 @@
   import cordovaApp from '../js/cordova-app.js';
   import routes from '../js/routes.js';
   import thing from '../js/items_checkout.js';
-  import subTotal from '../js/items_checkout.js';
 
   export default {
     data() {
@@ -181,7 +180,7 @@
       },
 
       roundTotal() {
-        this.total = (Math.round((this.items.reduce((acc, item) => acc + item.price, 0)) * 1000) / 1000).toFixed(2);
+        this.total = (Math.round((this.items.reduce((total, item) => total + item.price, 0)) * 1000) / 1000).toFixed(2);
         return this.total;
       },
 

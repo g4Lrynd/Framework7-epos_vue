@@ -2,27 +2,24 @@ import menu from './menu.js'
 
 export default {
     
-    subTotal: '',
+    //subTotal: '',
     items: [],
     nextItemID: 4,
 
-    total() {
-        return this.subTotal;
-    },
-
-    getItem(name) {
+    getItem(button_id) {
         for (var i = 0; i < menu.length; i+= 1) {
-            if (menu[i].name == name) {
-                this.items.push({  
+            if (menu[i].button_id == button_id) {
+                this.items.push({
+
                     id: this.nextItemID++,
                     name: menu[i].name,
                     price: menu[i].price
                 });
                 
-                this.subTotal += menu[i].price;
-                console.log(this.subTotal);
+                //this.subTotal += menu[i].price;
+                //console.log(this.subTotal);
                 
-                console.log(this.items);
+                //console.log(this.items);
             }
         }    
     } 
