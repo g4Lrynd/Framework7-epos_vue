@@ -27,6 +27,7 @@
     <allow-navigation href="*" />
 
     <platform name="android">
+      <preference name="Fullscreen" value="true" />
       <preference name="StatusBarOverlaysWebView" value="false" />
       <preference name="android-minSdkVersion" value="21" />
       <preference name="SplashMaintainAspectRatio" value="true" />

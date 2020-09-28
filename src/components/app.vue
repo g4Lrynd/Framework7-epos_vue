@@ -160,6 +160,9 @@
         
         // Subtotal of all items in list
         total: '',
+
+        // Calculates change after cash
+        change: 'total',
         
       }
     },
@@ -170,6 +173,7 @@
         });
       },
 
+      
       removeItem(index) {
         //const itemIndex = this.items.indexOf(item);
         //this.items.splice(index, 1);
