@@ -52,7 +52,7 @@
                 <br>
                 <f7-button fill color="gray" v-on:click="keypad(3)" id="3">3</f7-button>
                 <br>
-                <f7-button fill color="pink" v-on:click="subTotal()" >X</f7-button>
+                <f7-button fill color="pink" v-on:click="reset" >X</f7-button>
               </f7-col>
              </f7-row>
 
@@ -152,13 +152,13 @@
         username: '',
         password: '',
 
-        //keypad
+        // Keypad output
         current: '',
 
-        //items currently chosen
+        // Items in list
         items: thing.items,
         
-        //subtotal
+        // Subtotal of all items in list
         total: '',
         
       }
@@ -171,7 +171,6 @@
       },
 
       removeItem(index) {
-
         //const itemIndex = this.items.indexOf(item);
         //this.items.splice(index, 1);
         this.$delete(this.items, index)
@@ -184,12 +183,9 @@
         return this.total;
       },
 
-      reset() {
-        
+      reset() { 
         //thing.resetItems();
         this.current = '';
-        console.log(this.test);
-        
       },
 
       keypad(number) {
@@ -199,7 +195,7 @@
             this.current /= 100;    
           }
 
-          //limited to £10,000.00
+          // Limited to £10,000.00
           else if (this.current < 10000.0) {
             this.current = `${this.current}${number}`
             this.current *= 10;
