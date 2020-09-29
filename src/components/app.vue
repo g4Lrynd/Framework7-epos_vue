@@ -212,11 +212,14 @@
       },
 
       reset() { 
-        //thing.resetItems();
-        this.saleEnd = true;
-        this.titlePrefix = 'Change: '
-        this.change = '£' + (this.current - this.total);
-        this.current = '';
+        if (this.items.length > 0) {
+
+          this.saleEnd = true;
+          this.titlePrefix = 'Change: '
+          this.change = '£' + this.round(this.current - this.total);
+          this.current = '';
+          
+        }
         
       },
 

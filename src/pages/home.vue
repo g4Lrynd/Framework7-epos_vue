@@ -42,12 +42,12 @@
 
 <script>
   import basket from '../js/items_checkout.js';
+  import app from '../components/app.vue';
 
   export default {
     data() {
       return {
-        
-        
+        saleEnd: app.saleEnd,
 
       }
     },
@@ -55,6 +55,9 @@
 
       addToItems(button_id) {
         basket.getItem(button_id)
+
+        saleEnd = false;
+        console.log(saleEnd);
         }
       
     }, 
