@@ -5,7 +5,7 @@
   <f7-panel right cover theme-dark :visible-breakpoint="960">
     <f7-view>
       <f7-page>
-        <f7-navbar title="Total:" >{{ '£' + roundTotal() }}</f7-navbar>
+        <f7-navbar v-bind:title="titlePrefix">{{saleEnd ? change : itemsTotal() }}</f7-navbar>
 
           <f7-page-content style="margin: 0em; padding: 0em; height: 38%">
 
@@ -57,7 +57,7 @@
              </f7-row>
 
             <f7-block style="padding: 0em; margin-top: 20px; margin-bottom: 0px">
-              <f7-button fill color="green" v-on:click="reset">Cash</f7-button>
+              <f7-button fill color="green" v-on:click="reset()">Cash</f7-button>
             </f7-block>
 
         </f7-block>
@@ -161,8 +161,11 @@
         // Subtotal of all items in list
         total: '',
 
-        // Calculates change after cash
-        change: 'total',
+        titlePrefix: 'Total: ',
+
+        change: '',
+
+        saleEnd: false
         
       }
     },
@@ -172,8 +175,7 @@
           this.$f7.loginScreen.close();
         });
       },
-
-      
+ 
       removeItem(index) {
         //const itemIndex = this.items.indexOf(item);
         //this.items.splice(index, 1);
@@ -182,14 +184,14 @@
         
       },
 
-      roundTotal() {
-        this.total = (Math.round((this.items.reduce((total, item) => total + item.price, 0)) * 1000) / 1000).toFixed(2);
-        return this.total;
-      },
+      round(unRounded) {
+        const rounded = Math.round((unRounded * 1000) / 1000).toFixed(2);
+        return rounded;
+      }, 
 
-      reset() { 
-        //thing.resetItems();
-        this.current = '';
+      itemsTotal() {
+        this.total = this.round(this.items.reduce((total, item) => total + item.price, 0));
+        return '£' + this.total;
       },
 
       keypad(number) {
@@ -203,11 +205,21 @@
           else if (this.current < 10000.0) {
             this.current = `${this.current}${number}`
             this.current *= 10;
-          }
+          } 
 
-         this.current = (Math.round(this.current * 1000) / 1000).toFixed(2);
+        this.current = (Math.round(this.current * 1000) / 1000).toFixed(2);
          
-        }
+      },
+
+      reset() { 
+        //thing.resetItems();
+        this.saleEnd = true;
+        this.titlePrefix = 'Change: '
+        this.change = '£' + (this.current - this.total);
+        this.current = '';
+        
+      },
+
       
     },
    
