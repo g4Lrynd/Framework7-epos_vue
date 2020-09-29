@@ -1,4 +1,4 @@
-# project_epos
+# Framework7 vue - EPOS application for android/ios
 
 ## Framework7 CLI Options
 
