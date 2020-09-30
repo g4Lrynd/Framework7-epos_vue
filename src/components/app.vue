@@ -57,7 +57,7 @@
              </f7-row>
 
             <f7-block style="padding: 0em; margin-top: 20px; margin-bottom: 0px">
-              <f7-button fill color="green" v-on:click="reset()">Cash</f7-button>
+              <f7-button fill color="green" v-bind:items="items" v-on:click="reset()">Cash</f7-button>
             </f7-block>
 
         </f7-block>
@@ -123,6 +123,7 @@
   import cordovaApp from '../js/cordova-app.js';
   import routes from '../js/routes.js';
   import thing from '../js/items_checkout.js';
+  import page from '../pages/sapindaceae.vue';
 
   export default {
     data() {
@@ -165,7 +166,7 @@
 
         change: '',
 
-        saleEnd: false
+        saleEnd: page.saleEnd,
         
       }
     },
@@ -184,13 +185,13 @@
         
       },
 
-      round(unRounded) {
-        const rounded = Math.round((unRounded * 1000) / 1000).toFixed(2);
+      round(unrounded) {
+        const rounded = (Math.round((unrounded) * 1000) / 1000).toFixed(2);
         return rounded;
       }, 
 
       itemsTotal() {
-        this.total = this.round(this.items.reduce((total, item) => total + item.price, 0));
+        this.total = this.items.reduce((total, item) => total + item.price, 0);
         return '£' + this.total;
       },
 
@@ -207,17 +208,18 @@
             this.current *= 10;
           } 
 
-        this.current = (Math.round(this.current * 1000) / 1000).toFixed(2);
+        this.current = this.round(this.current);
          
       },
 
       reset() { 
-        if (this.items.length > 0) {
-
+        if (this.total > 0 && this.current >= this.total) { 
           this.saleEnd = true;
-          this.titlePrefix = 'Change: '
+          this.titlePrefix = 'Change: ';
           this.change = '£' + this.round(this.current - this.total);
           this.current = '';
+          this.items.splice(0,this.items.length);
+          console.log(this.items);
           
         }
         

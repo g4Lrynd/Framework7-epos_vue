@@ -19,7 +19,7 @@ export default {
                 //this.subTotal += menu[i].price;
                 //console.log(this.subTotal);
                 
-                //console.log(this.items);
+                console.log(this.items);
             }
         }    
     } 
