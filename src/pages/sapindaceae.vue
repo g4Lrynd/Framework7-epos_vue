@@ -18,13 +18,10 @@
 </template>
 <script>
   import basket from '../js/items_checkout.js';
-  import sidebar from '../components/app.vue';
 
   export default {
     data() {
       return {
-        saleEnd: false,
-
       }
     },
     methods: {
@@ -32,8 +29,7 @@
       addToItems(button_id) {
         basket.getItem(button_id);
 
-        //this.saleEnd = false;
-        console.log(this.saleEnd);
+        this.$root.$emit('update', false);
         }
       
     }, 

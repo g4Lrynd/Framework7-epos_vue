@@ -13,7 +13,7 @@
     <f7-block strong>
       <f7-row>
         <f7-col width="33">
-          <f7-button fill href="/sapindaceae/">Sapindaceae</f7-button>
+          <f7-button v-on:update="updateSaleStatus($event)" fill href="/sapindaceae/">Sapindaceae</f7-button>
           <br>
           <f7-button fill>Category</f7-button>
         </f7-col>
@@ -42,13 +42,11 @@
 
 <script>
   import basket from '../js/items_checkout.js';
-  import sidebar from '../components/app.vue';
 
   export default {
     data() {
       return {
-        saleEnd: sidebar.saleEnd,
-
+        
       }
     },
     methods: {
@@ -56,9 +54,8 @@
       addToItems(button_id) {
         basket.getItem(button_id);
 
-        this.saleEnd = false;
-        console.log(this.saleEnd);
-        }
+        
+        },
       
     }, 
   }

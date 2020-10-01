@@ -9,7 +9,7 @@
 
           <f7-page-content style="margin: 0em; padding: 0em; height: 38%">
 
-            <f7-list  style="margin: 0em;" >
+            <f7-list style="margin: 0em;">
               <f7-list-item v-for="(item, index) in items" :key="item.id" :title="item.name" :after="'£' + item.price"swipeout>
                 <f7-swipeout-actions right>
                   <f7-swipeout-button delete v-on:click="removeItem(index)">Delete</f7-swipeout-button>
@@ -52,12 +52,12 @@
                 <br>
                 <f7-button fill color="gray" v-on:click="keypad(3)" id="3">3</f7-button>
                 <br>
-                <f7-button fill color="pink" v-on:click="reset" >X</f7-button>
+                <f7-button fill color="pink" v-on:click="current = 0">X</f7-button>
               </f7-col>
              </f7-row>
 
             <f7-block style="padding: 0em; margin-top: 20px; margin-bottom: 0px">
-              <f7-button fill color="green" v-bind:items="items" v-on:click="reset()">Cash</f7-button>
+              <f7-button fill color="green" v-on:click="reset()">Cash</f7-button>
             </f7-block>
 
         </f7-block>
@@ -166,10 +166,10 @@
 
         change: '',
 
-        saleEnd: page.saleEnd,
-        
+        saleEnd: false,
       }
     },
+
     methods: {
       alertLoginData() {
         this.$f7.dialog.alert('Username: ' + this.username + '<br>Password: ' + this.password, () => {
@@ -191,8 +191,9 @@
       }, 
 
       itemsTotal() {
-        this.total = this.items.reduce((total, item) => total + item.price, 0);
+        this.total = this.round(this.items.reduce((total, item) => total + item.price, 0));
         return '£' + this.total;
+        
       },
 
       keypad(number) {
@@ -214,18 +215,22 @@
 
       reset() { 
         if (this.total > 0 && this.current >= this.total) { 
+
           this.saleEnd = true;
           this.titlePrefix = 'Change: ';
           this.change = '£' + this.round(this.current - this.total);
           this.current = '';
-          this.items.splice(0,this.items.length);
-          console.log(this.items);
+          this.items.splice(0, this.items.length);
           
+          this.$root.$on('update', (data) => {
+            this.saleEnd = false;
+            this.titlePrefix = 'Total: ';
+          });
+          
+          console.log(this.saleEnd);
         }
         
-      },
-
-      
+      },  
     },
    
     mounted() {
@@ -238,4 +243,5 @@
       });
     }
   }
+  
 </script>
