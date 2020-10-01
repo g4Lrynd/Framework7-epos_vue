@@ -32,7 +32,7 @@
                 <br>
                 <f7-button fill color="gray" v-on:click="keypad(1)">1</f7-button>
                 <br>
-                <f7-button fill color="gray" v-on:click="keypad()">00</f7-button>
+                <f7-button fill color="gray" v-on:click="zero()">00</f7-button>
               </f7-col>
 
               <f7-col>
@@ -196,29 +196,53 @@
         
       },
 
+      zero() {
+        if (this.current == '') {
+          this.current == '';
+        }
+        else if (this.current < 0.001) {
+          this.current = `${this.current}${0}${0}`
+          this.current /= 1000; 
+
+          this.current = this.round(this.current);   
+        }
+
+        // Limited to £10,000.00
+        else if (this.current < 10000.0) {
+          this.current = `${this.current}${0}${0}`
+          this.current *= 100;
+            
+          this.current = this.round(this.current);
+        }
+      },
+
       keypad(number) {
+        if (this.current == '' && number == 0) {
+          this.current == '';
+        }
+        else if (this.current < 0.001) {
+          this.current = `${this.current}${number}`
+          this.current /= 100; 
 
-          if (this.current < 0.001) {
-            this.current = `${this.current}${number}`
-            this.current /= 100;    
-          }
+          this.current = this.round(this.current);   
+        }
 
-          // Limited to £10,000.00
-          else if (this.current < 10000.0) {
-            this.current = `${this.current}${number}`
-            this.current *= 10;
-          } 
-
-        this.current = this.round(this.current);
-         
+        // Limited to £10,000.00
+        else if (this.current < 10000.0) {
+          this.current = `${this.current}${number}`
+          this.current *= 10;
+            
+          this.current = this.round(this.current);
+        } 
       },
 
       reset() { 
-        if (this.total > 0 && this.current >= this.total) { 
-
+        if (this.total > 0 && this.current >= this.total) {
           this.saleEnd = true;
           this.titlePrefix = 'Change: ';
-          this.change = '£' + this.round(this.current - this.total);
+
+          this.change = this.current - this.total;
+          this.change = '£' + (this.round(this.change));
           this.current = '';
           this.items.splice(0, this.items.length);
           
@@ -229,7 +253,6 @@
           
           console.log(this.saleEnd);
         }
-        
       },  
     },
    

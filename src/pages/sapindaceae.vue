@@ -10,7 +10,7 @@
           <f7-button fill v-on:click="addToItems(1)">Sugar Maple</f7-button>
         </f7-col>
         <f7-col width="33">
-          <f7-button fill v-bind:saleEnd="false" v-on:click="addToItems(2)">Lychee</f7-button>
+          <f7-button fill v-on:click="addToItems(2)">Lychee</f7-button>
         </f7-col>
       </f7-row>
     </f7-block>
