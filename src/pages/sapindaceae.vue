@@ -17,21 +17,20 @@
   </f7-page>
 </template>
 <script>
-  import basket from '../js/items_checkout.js';
+import basket from '../js/items_checkout.js';
 
-  export default {
-    data() {
-      return {
-      }
-    },
-    methods: {
+export default {
+  data() {
+    return {
+    }
+  },
+  methods: {
 
-      addToItems(button_id) {
-        basket.getItem(button_id);
+    addToItems(button_id) {
+      basket.getItem(button_id);
 
-        this.$root.$emit('update', false);
-        }
-      
-    }, 
-  }
+      this.$root.$emit('update', false);
+    }
+  },
+}
 </script>

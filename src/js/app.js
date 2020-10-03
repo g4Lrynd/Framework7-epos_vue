@@ -16,9 +16,11 @@ import '../css/app.less';
 
 // Import App Component
 import App from '../components/app.vue';
+import test from '../components/categories.vue';
 
 // Init Framework7-Vue Plugin
 Framework7.use(Framework7Vue);
+
 
 // Init App
 new Vue({
@@ -27,6 +29,6 @@ new Vue({
 
   // Register App Component
   components: {
-    app: App
+    app: App,
   },
 });

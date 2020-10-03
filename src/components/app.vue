@@ -10,7 +10,12 @@
           <f7-page-content style="margin: 0em; padding: 0em; height: 38%">
 
             <f7-list style="margin: 0em;">
-              <f7-list-item v-for="(item, index) in items" :key="item.id" :title="item.name" :after="'£' + item.price"swipeout>
+              <f7-list-item
+              v-for="(item, index) in items"
+              :key="item.id"
+              :title="item.name"
+              :after="'£' + item.price"
+              swipeout>
                 <f7-swipeout-actions right>
                   <f7-swipeout-button delete v-on:click="removeItem(index)">Delete</f7-swipeout-button>
                 </f7-swipeout-actions>
@@ -19,7 +24,7 @@
 
           </f7-page-content>
 
-        
+
 
         <f7-block strong bottom style="padding-right: 13%; padding-left: 13%; margin: 3px; position: fixed; width: 100%; bottom: 0;">
           <f7-block-title block-title type="number" style="margin-bottom: 10px; padding: 5px; font-size: 1.4em; ">£{{ current || '0.00' }}</f7-block-title>
@@ -61,7 +66,7 @@
             </f7-block>
 
         </f7-block>
-      
+
       </f7-page>
     </f7-view>
   </f7-panel>
@@ -123,7 +128,6 @@
   import cordovaApp from '../js/cordova-app.js';
   import routes from '../js/routes.js';
   import thing from '../js/items_checkout.js';
-  import page from '../pages/sapindaceae.vue';
 
   export default {
     data() {
@@ -158,8 +162,8 @@
 
         // Items in list
         items: thing.items,
-        
-        // Subtotal of all items in list
+
+        // Subtotal of all items in items
         total: '',
 
         titlePrefix: 'Total: ',
@@ -176,24 +180,24 @@
           this.$f7.loginScreen.close();
         });
       },
- 
+
       removeItem(index) {
         //const itemIndex = this.items.indexOf(item);
         //this.items.splice(index, 1);
         this.$delete(this.items, index)
         console.log(this.items);
-        
+
       },
 
       round(unrounded) {
         const rounded = (Math.round((unrounded) * 1000) / 1000).toFixed(2);
         return rounded;
-      }, 
+      },
 
       itemsTotal() {
         this.total = this.round(this.items.reduce((total, item) => total + item.price, 0));
         return '£' + this.total;
-        
+
       },
 
       zero() {
@@ -202,16 +206,16 @@
         }
         else if (this.current < 0.001) {
           this.current = `${this.current}${0}${0}`
-          this.current /= 1000; 
+          this.current /= 1000;
 
-          this.current = this.round(this.current);   
+          this.current = this.round(this.current);
         }
 
-        // Limited to £10,000.00
+        // Limited to £10,000.0
         else if (this.current < 10000.0) {
           this.current = `${this.current}${0}${0}`
           this.current *= 100;
-            
+
           this.current = this.round(this.current);
         }
       },
@@ -222,22 +226,22 @@
         }
         else if (this.current < 0.001) {
           this.current = `${this.current}${number}`
-          this.current /= 100; 
+          this.current /= 100;
 
-          this.current = this.round(this.current);   
+          this.current = this.round(this.current);
         }
 
         // Limited to £10,000.00
         else if (this.current < 10000.0) {
           this.current = `${this.current}${number}`
           this.current *= 10;
-            
+
           this.current = this.round(this.current);
-        } 
+        }
       },
 
-      reset() { 
-        if (this.total > 0 && this.current >= this.total) {
+      reset() {
+        if (this.items.length > 0 && this.current >= this.total) {
           this.saleEnd = true;
           this.titlePrefix = 'Change: ';
 
@@ -245,17 +249,18 @@
           this.change = '£' + (this.round(this.change));
           this.current = '';
           this.items.splice(0, this.items.length);
-          
+
           this.$root.$on('update', (data) => {
             this.saleEnd = false;
             this.titlePrefix = 'Total: ';
+
           });
-          
+
           console.log(this.saleEnd);
         }
-      },  
+      },
     },
-   
+
     mounted() {
       this.$f7ready((f7) => {
         // Init cordova APIs (see cordova-app.js)
@@ -266,5 +271,5 @@
       });
     }
   }
-  
+
 </script>
