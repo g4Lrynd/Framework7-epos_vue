@@ -13,7 +13,7 @@
               <f7-list-item
               v-for="(item, index) in items"
               :key="item.id"
-              :title="item.name"
+              :title="item.quantity + ' ' + item.name"
               :after="'£' + item.price"
               swipeout>
                 <f7-swipeout-actions right>

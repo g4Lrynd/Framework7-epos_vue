@@ -1,4 +1,4 @@
-export default [ 
+export default [
 
     {
         id: 1,
@@ -6,6 +6,7 @@ export default [
         name: 'Horse Chestnut',
         price: 1.99,
         category: 'sapindaceae',
+        quantity: 1,
     },
     {
         id: 2,
@@ -13,6 +14,7 @@ export default [
         name: 'Sugar Maple',
         price: 9.99,
         category: 'sapindaceae',
+        quantity: 1,
     },
     {
         id: 3,
@@ -20,6 +22,7 @@ export default [
         name: 'Lychee',
         price: 3.49,
         category: 'sapindaceae',
+        quantity: 1,
     }
 
 ];
