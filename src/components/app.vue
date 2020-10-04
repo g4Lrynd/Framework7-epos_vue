@@ -57,7 +57,7 @@
                 <br>
                 <f7-button fill color="gray" v-on:click="keypad(3)" id="3">3</f7-button>
                 <br>
-                <f7-button fill color="pink" v-on:click="current = 0">X</f7-button>
+                <f7-button fill color="pink" v-on:click="current = 0">CLR</f7-button>
               </f7-col>
              </f7-row>
 
@@ -201,8 +201,10 @@
       },
 
       zero() {
+        this.current = this.round(this.current);
+        /*
         if (this.current == '') {
-          this.current == '';
+          this.current = '';
         }
         else if (this.current < 0.001) {
           this.current = `${this.current}${0}${0}`
@@ -218,6 +220,7 @@
 
           this.current = this.round(this.current);
         }
+        */
       },
 
       keypad(number) {
