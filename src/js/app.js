@@ -16,7 +16,9 @@ import '../css/app.less';
 
 // Import App Component
 import App from '../components/app.vue';
-import test from '../components/categories.vue';
+import SidePanel from '../components/SidePanel.vue';
+
+
 
 // Init Framework7-Vue Plugin
 Framework7.use(Framework7Vue);
@@ -30,5 +32,6 @@ new Vue({
   // Register App Component
   components: {
     app: App,
+
   },
 });

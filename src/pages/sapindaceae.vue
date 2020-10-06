@@ -17,17 +17,19 @@
   </f7-page>
 </template>
 <script>
-import basket from '../js/items_checkout.js';
+import SidePanel from '../components/SidePanel.vue';
+import App from '../components/app.vue';
 
 export default {
   data() {
     return {
+
     }
   },
   methods: {
 
     addToItems(button_id) {
-      basket.getItem(button_id);
+      App.getItem(button_id);
 
       this.$root.$emit('update', false);
     }

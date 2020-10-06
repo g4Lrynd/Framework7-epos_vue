@@ -14,10 +14,11 @@
 
     </f7-navbar>
 
-    <!-- Toolbar-->
+    <!-- Toolbar
     <f7-toolbar bottom>
       <f7-link login-screen-open="#my-login-screen">Sign out</f7-link>
     </f7-toolbar>
+    -->
 
     <f7-block strong>
       <f7-row>
@@ -42,14 +43,17 @@
 
 
   </f7-page>
-
-  
 </template>
 
 <script>
-  import basket from '../js/items_checkout.js';
+import SidePanel from '../components/SidePanel.vue';
 
   export default {
+
+    components: {
+      SidePanel
+    },
+
     data() {
       return {
 
@@ -71,9 +75,10 @@
       },
 
       addToItems(button_id) {
-        basket.getItem(button_id);
+        SidePanel.getItem(button_id);
       },
 
     },
+
   }
 </script>

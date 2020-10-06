@@ -1,22 +1,8 @@
-<template>
-    <div class="test">
-        <a href="#" @click="click">Click me</a>
-    </div>
-</template>
-<style>
-</style>
-<script>
-    export default {
-        data() {
-            return {
-            };
-        },
-        methods: {
-            click() {
-                alert('Clicked');
-            }
-        },
-        on : {
-        }
-    };
-</script>
+Vue.component('button-counter', {
+  data: function () {
+    return {
+      count: 0
+    }
+  },
+  template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+})
