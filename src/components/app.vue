@@ -71,6 +71,7 @@
   import routes from '../js/routes.js';
   import SidePanel from '../components/SidePanel.vue';
   import menu from '../js/menu.js';
+  import Vue from 'vue'
 
   export default {
 
@@ -78,15 +79,20 @@
     nextItemID: 4,
 
     getItem(button_id) {
-      var length = menu.length;
+      let length = menu.length;
 
       for (var i = 0; i < length; i+= 1) {
           if (menu[i].button_id == button_id) {
-            /*if (menu[i].quantity > 2) {
-              this.$set(this.items, menu[i].quantity, menu[i].quantity++);
+            if (menu[i].quantity > 1) {
+
+              var priceCounter = 1;
+              
+              Vue.set(this.items[i], this.items[i], this.items[i].quantity++);
+              Vue.set(this.items[i], this.items[i], this.items[i].price+=this.items[i].quantity);
+              console.log(this.items);
             }
-            */
-            
+
+            else {
               this.items.push({
 
                   id: this.nextItemID++,
@@ -95,6 +101,7 @@
                   quantity: menu[i].quantity++, });
 
                 console.log(this.items);
+            }
           }
       }
     },
