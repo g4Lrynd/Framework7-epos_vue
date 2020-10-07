@@ -76,7 +76,7 @@
   export default {
 
     items: [],
-    nextItemID: 4,
+    nextItemID: 3,
 
     getItem(button_id) {
       let length = menu.length;
@@ -84,26 +84,29 @@
       for (var i = 0; i < length; i+= 1) {
           if (menu[i].button_id == button_id) {
             if (menu[i].quantity > 1) {
-
-              var priceCounter = 1;
-              
-              Vue.set(this.items[i], this.items[i], this.items[i].quantity++);
-              Vue.set(this.items[i], this.items[i], this.items[i].price+=this.items[i].quantity);
-              console.log(this.items);
+              this.updateItem(i);
             }
-
             else {
               this.items.push({
 
-                  id: this.nextItemID++,
-                  name: menu[i].name,
-                  price: menu[i].price,
-                  quantity: menu[i].quantity++, });
+                id: this.nextItemID++,
+                name: menu[i].name,
+                price: menu[i].price,
+                quantity: menu[i].quantity++, });
 
-                console.log(this.items);
+                console.table(this.items);
             }
           }
-      }
+        }
+    },
+
+    updateItem(i) {
+      var newPrice = (this.items[i].quantity * menu[i].price)+menu[i].price;
+      newPrice = parseFloat(newPrice.toFixed(2));
+
+      Vue.set(this.items[i], this.items[i], (this.items[i].price=newPrice));
+      Vue.set(this.items[i], this.items[i], this.items[i].quantity++);
+      console.table(this.items);
     },
 
     components: {
@@ -121,8 +124,7 @@
           // App routes
           routes: routes,
 
-
-          // Input settings
+        // Input settings
           input: {
             scrollIntoViewOnFocus: Device.cordova && !Device.electron,
             scrollIntoViewCentered: Device.cordova && !Device.electron,
@@ -134,13 +136,9 @@
           },
         },
 
-
-
-        // Login screen data
+      // Login screen data
         username: '',
         password: '',
-
-
       }
     },
 
@@ -150,9 +148,6 @@
           this.$f7.loginScreen.close();
         });
       },
-
-
-
     },
 
     mounted() {

@@ -109,10 +109,10 @@ export default {
     },
 
     itemsTotal() {
-      /*
+
       this.total = this.round(this.items.reduce((total, item) => total + item.price, 0));
       return '£' + this.total;
-      */
+      
     },
 
     zero() {

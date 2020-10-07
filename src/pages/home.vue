@@ -20,22 +20,27 @@
     </f7-toolbar>
     -->
 
-    <f7-block strong>
+    <f7-block strong style="margin-top: 0px">
       <f7-row>
-        <f7-col width="33">
-          <f7-button fill href="/sapindaceae/">Sapindaceae</f7-button>
+        <f7-col width="25">
+          <f7-button large fill href="/sapindaceae/">Sapindaceae</f7-button>
           <br>
-          <f7-button fill>Category</f7-button>
+          <f7-button large fill>Category</f7-button>
         </f7-col>
-        <f7-col width="33">
-          <f7-button fill>Category</f7-button>
+        <f7-col width="25">
+          <f7-button large fill>Category</f7-button>
           <br>
-          <f7-button fill>Category</f7-button>
+          <f7-button large fill>Category</f7-button>
         </f7-col>
-        <f7-col width="33">
-          <f7-button fill>Category</f7-button>
+        <f7-col width="25">
+          <f7-button large fill>Category</f7-button>
           <br>
-          <f7-button fill>Category</f7-button>
+          <f7-button large fill>Category</f7-button>
+        </f7-col>
+        <f7-col width="25">
+          <f7-button large fill>Category</f7-button>
+          <br>
+          <f7-button large fill>Category</f7-button>
         </f7-col>
       </f7-row>
     </f7-block>
