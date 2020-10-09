@@ -76,15 +76,23 @@
   export default {
 
     items: [],
-    nextItemID: 3,
+    nextItemID: 1,
+
+    checkItems(button_id) {
+      for (const i in this.items) {
+        if (button_id == this.items[i].spesh_id) {
+          return true;
+        }
+      }
+    },
 
     getItem(button_id) {
       let length = menu.length;
 
-      for (var i = 0; i < length; i+= 1) {
-          if (menu[i].button_id == button_id) {
-            if (menu[i].quantity > 1) {
-              this.updateItem(i);
+      for (var i = 0; i < length; i += 1) {
+          if (button_id == menu[i].button_id) {
+            if (this.checkItems(menu[i].button_id)) {
+              this.updateItem(menu[i].button_id);
             }
             else {
               this.items.push({
@@ -92,21 +100,32 @@
                 id: this.nextItemID++,
                 name: menu[i].name,
                 price: menu[i].price,
-                quantity: menu[i].quantity++, });
+                spesh_id: menu[i].button_id,
+                quantity: 1, });
 
                 console.table(this.items);
+                console.table(menu);
+
+                break;
             }
           }
         }
     },
 
-    updateItem(i) {
-      var newPrice = (this.items[i].quantity * menu[i].price)+menu[i].price;
-      newPrice = parseFloat(newPrice.toFixed(2));
+    updateItem(spesh_id) {
+      for (const i in this.items) {
+        if (spesh_id == this.items[i].spesh_id) {
+          Vue.set(this.items, 'quantity', this.items[i].quantity++);
+          console.table(this.items);
+          console.table(menu);
+        }
+      }
+      //var newPrice = (this.items[i].quantity * menu[i].price)+menu[i].price;
+      //newPrice = parseFloat(newPrice.toFixed(2));
 
-      Vue.set(this.items[i], this.items[i], (this.items[i].price=newPrice));
-      Vue.set(this.items[i], this.items[i], this.items[i].quantity++);
-      console.table(this.items);
+      //Vue.set(this.items[i], this.items[i], (this.items[i].price=newPrice));
+
+
     },
 
     components: {

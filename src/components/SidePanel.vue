@@ -74,7 +74,6 @@ export default {
   data() {
     return {
 
-
       // Keypad output
       current: '',
 
@@ -99,8 +98,9 @@ export default {
       //const itemIndex = this.items.indexOf(item);
       //this.items.splice(index, 1);
       this.$delete(this.items, index)
-      console.log(this.items);
 
+      console.table(this.items);
+      console.log('removed');
     },
 
     round(unrounded) {
@@ -112,7 +112,7 @@ export default {
 
       this.total = this.round(this.items.reduce((total, item) => total + item.price, 0));
       return '£' + this.total;
-      
+
     },
 
     zero() {
