@@ -95,12 +95,10 @@ export default {
   methods: {
 
     removeItem(index) {
-      //const itemIndex = this.items.indexOf(item);
-      //this.items.splice(index, 1);
       this.$delete(this.items, index)
 
-      console.table(this.items);
-      console.log('removed');
+      //console.table(this.items);
+      //console.log('removed');
     },
 
     round(unrounded) {
@@ -109,7 +107,6 @@ export default {
     },
 
     itemsTotal() {
-
       this.total = this.round(this.items.reduce((total, item) => total + item.price, 0));
       return '£' + this.total;
 
@@ -117,12 +114,11 @@ export default {
 
     zero() {
       this.current = this.round(this.current);
-
     },
 
     keypad(number) {
       if (this.current == '' && number == 0) {
-        this.current == '';
+        this.current = '';
       }
       else if (this.current < 0.001) {
         this.current = `${this.current}${number}`

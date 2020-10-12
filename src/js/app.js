@@ -16,8 +16,6 @@ import '../css/app.less';
 
 // Import App Component
 import App from '../components/app.vue';
-import SidePanel from '../components/SidePanel.vue';
-
 
 
 // Init Framework7-Vue Plugin

@@ -1,7 +1,7 @@
 <template>
   <f7-page name="home">
     <!-- Top Navbar -->
-    <f7-navbar :sliding="false">
+    <f7-navbar>
       <f7-nav-title sliding>Menu</f7-nav-title>
     <f7-nav-right style="margin-right: 16px;">
 
@@ -20,34 +20,39 @@
     </f7-toolbar>
     -->
 
-    <f7-block strong style="margin-top: 0px">
+    <f7-block strong style="margin-top: 0px; margin-bottom: 0px">
       <f7-row>
         <f7-col width="25">
-          <f7-button large fill href="/sapindaceae/">Sapindaceae</f7-button>
+          <f7-button large fill color="deeppurple" href="/sapindaceae/" data-view=".view-bottom">Sapindaceae</f7-button>
           <br>
-          <f7-button large fill>Category</f7-button>
+          <f7-button large fill color="deeppurple">Category</f7-button>
         </f7-col>
         <f7-col width="25">
-          <f7-button large fill>Category</f7-button>
+          <f7-button large fill color="deeppurple">Category</f7-button>
           <br>
-          <f7-button large fill>Category</f7-button>
+          <f7-button large fill color="deeppurple">Category</f7-button>
         </f7-col>
         <f7-col width="25">
-          <f7-button large fill>Category</f7-button>
+          <f7-button large fill color="deeppurple">Category</f7-button>
           <br>
-          <f7-button large fill>Category</f7-button>
+          <f7-button large fill color="deeppurple">Category</f7-button>
         </f7-col>
         <f7-col width="25">
-          <f7-button large fill>Category</f7-button>
+          <f7-button large fill color="deeppurple">Category</f7-button>
           <br>
-          <f7-button large fill>Category</f7-button>
+          <f7-button large fill color="deeppurple">Category</f7-button>
         </f7-col>
       </f7-row>
     </f7-block>
     <!-- Page content-->
 
+      <f7-view class="view-bottom" url="/dynamic-route/" style="height: 60%"></f7-view>
+
+
 
   </f7-page>
+
+
 </template>
 
 <script>
