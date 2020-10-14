@@ -25,7 +25,11 @@
 
           <f7-button large fill color="blue" href="/sapindaceae/" data-view=".view-bottom">Sapindaceae</f7-button>
 
-          <f7-button large fill color="blue">Category</f7-button>
+          <f7-button large fill color="blue"
+          v-for="(item, index) in categories"
+          v-if="item.id > 2"
+          :key="item.id"
+          >{{ item.name }}</f7-button>
 
 
     </f7-block>
@@ -42,6 +46,7 @@
 
 <script>
 import SidePanel from '../components/SidePanel.vue';
+import categories from '../js/categories.js';
 
   export default {
 
@@ -51,10 +56,9 @@ import SidePanel from '../components/SidePanel.vue';
 
     data() {
       return {
-
         isActive: true,
         eatDestination: '',
-
+        categories: categories,
       }
     },
     methods: {

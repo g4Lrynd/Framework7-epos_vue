@@ -1,26 +1,26 @@
 export default [
     {
-        button_id: 0,
+        id: 0,
         name: 'Sapindaceae',
-    }
+    },
     {
-        button_id: 1,
+        id: 1,
         name: 'Category',
-    }
+    },
     {
-        button_id: 2,
+        id: 2,
         name: 'Category',
-    }
+    },
     {
-        button_id: 3,
-        name: 'Category',
-    }
+        id: 3,
+        name: 'Test',
+    },
     {
-        button_id: 4,
+        id: 4,
         name: 'Category',
-    }
+    },
     {
-        button_id: 5,
+        id: 5,
         name: 'Category',
-    }
+    },
 ];
