@@ -6,7 +6,6 @@
     <f7-view>
       <f7-page>
 
-
         <side-panel></side-panel>
 
       </f7-page>
@@ -15,7 +14,7 @@
 
 
   <!-- Your main view, should have "view-main" class -->
-  <f7-view main class="safe-areas" url="/"></f7-view>
+  <f7-view main class="safe-areas" url="/" ></f7-view>
 
 
 

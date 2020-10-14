@@ -20,33 +20,18 @@
     </f7-toolbar>
     -->
 
-    <f7-block strong style="margin-top: 0px; margin-bottom: 0px">
-      <f7-row>
-        <f7-col width="25">
-          <f7-button large fill color="deeppurple" href="/sapindaceae/" data-view=".view-bottom">Sapindaceae</f7-button>
-          <br>
-          <f7-button large fill color="deeppurple">Category</f7-button>
-        </f7-col>
-        <f7-col width="25">
-          <f7-button large fill color="deeppurple">Category</f7-button>
-          <br>
-          <f7-button large fill color="deeppurple">Category</f7-button>
-        </f7-col>
-        <f7-col width="25">
-          <f7-button large fill color="deeppurple">Category</f7-button>
-          <br>
-          <f7-button large fill color="deeppurple">Category</f7-button>
-        </f7-col>
-        <f7-col width="25">
-          <f7-button large fill color="deeppurple">Category</f7-button>
-          <br>
-          <f7-button large fill color="deeppurple">Category</f7-button>
-        </f7-col>
-      </f7-row>
+    <f7-block strong style="margin-top: 0px; margin-bottom: 0px; display: flex; flex-wrap: wrap;">
+
+
+          <f7-button large fill color="blue" href="/sapindaceae/" data-view=".view-bottom">Sapindaceae</f7-button>
+
+          <f7-button large fill color="blue">Category</f7-button>
+
+
     </f7-block>
     <!-- Page content-->
 
-      <f7-view class="view-bottom" url="/dynamic-route/" style="height: 60%"></f7-view>
+      <f7-view class="view-bottom" url="/dynamic-route/" data-view="current"></f7-view>
 
 
 

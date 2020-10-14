@@ -7,10 +7,11 @@ import NotFoundPage from '../pages/404.vue';
 import SidePanel from '../components/SidePanel.vue'
 
 var routes = [
-  
+
   {
     path: '/',
     component: HomePage,
+    master: true,
   },
   {
     path: '/sapindaceae/',
