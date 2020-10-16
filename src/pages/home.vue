@@ -27,7 +27,7 @@
 
           <f7-button large fill color="blue"
           v-for="(item, index) in categories"
-          v-if="item.id > 2"
+          v-if="item.id > 1"
           :key="item.id"
           >{{ item.name }}</f7-button>
 
