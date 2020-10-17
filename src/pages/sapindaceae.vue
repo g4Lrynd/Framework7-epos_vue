@@ -13,7 +13,7 @@
   </f7-page>
 </template>
 <script>
-import SidePanel from '../components/SidePanel.vue';
+import sidepanel from '../components/sidepanel.vue';
 import App from '../components/app.vue';
 import menu from '../js/menu.js';
 

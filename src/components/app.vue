@@ -69,7 +69,7 @@
   import { Device }  from 'framework7/framework7-lite.esm.bundle.js';
   import cordovaApp from '../js/cordova-app.js';
   import routes from '../js/routes.js';
-  import SidePanel from '../components/SidePanel.vue';
+  import sidepanel from '../components/sidepanel.vue';
   import menu from '../js/menu.js';
   import Vue from 'vue'
 
@@ -129,7 +129,7 @@
     },
 
     components: {
-      'side-panel': SidePanel
+      'side-panel': sidepanel
     },
 
     data() {
