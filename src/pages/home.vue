@@ -28,12 +28,11 @@
           :key="category.id"
           >{{ category.name }}</f7-button>
 
-
     </f7-block>
     <!-- Page content-->
 
       <!--<f7-view class="view-bottom" url="/dynamic-route/" data-view="current"></f7-view>-->
-      <f7-block-title>{{ title }}</f7-block-title>
+      <f7-block-title style="font-size: 17px;">{{ title }}</f7-block-title>
       <f7-block strong style="display: flex; flex-wrap: wrap;">
 
         <f7-button large fill color="lightblue"
@@ -65,14 +64,14 @@ import App from '../components/app.vue';
 
     data() {
       return {
-        isActive: true,
-        eatDestination: '',
-
         categories: categories,
         menu: menu,
 
+        isActive: true,
+        eatDestination: '',
+
         selection: '',
-        title: 'Home',
+        title: categories[0].name,
       }
     },
     methods: {

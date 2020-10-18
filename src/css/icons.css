@@ -59,3 +59,7 @@
   font-feature-settings: "liga";
   text-align: center;
 }
+.f7-icon[icon]:before {
+    content: attr(icon);
+    color: inherit;
+}

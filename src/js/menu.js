@@ -1,31 +1,25 @@
 export default [
     {
         button_id: 0,
-        name: 'Horse Chestnut',
+        name: 'Beef Burger',
         price: 1.99,
         category: 0,
     },
     {
         button_id: 1,
-        name: 'Sugar Maple',
+        name: 'Fish Burger',
+        price: 1.99,
+        category: 0,
+    },
+    {
+        button_id: 2,
+        name: 'Wings',
         price: 9.99,
         category: 1,
     },
     {
-        button_id: 2,
-        name: 'Lychee',
-        price: 3.49,
-        category: 1,
-    },
-    {
         button_id: 3,
-        name: 'Beech',
-        price: 3.49,
-        category: 2,
-    },
-    {
-        button_id: 4,
-        name: 'Pine',
+        name: 'Selecto',
         price: 3.49,
         category: 2,
     },

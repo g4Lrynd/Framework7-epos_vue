@@ -1,15 +1,15 @@
 export default [
     {
         id: 0,
-        name: 'Category',
+        name: 'Burgers',
     },
     {
         id: 1,
-        name: 'Test',
+        name: 'Sides',
     },
     {
         id: 2,
-        name: 'Test',
+        name: 'Drinks',
     },
     {
         id: 3,

@@ -78,20 +78,11 @@
     items: [],
     nextItemID: 1,
 
-    //Returns false if the a menu item has already been added to items
-    checkItems(button_id) {
-      for (const i in this.items) {
-        if (button_id == this.items[i].spesh_id) {
-          return true;
-        }
-      }
-    },
-
     //button_id passed in from button from category page
     getItem(button_id) {
       let length = menu.length;
 
-      for (var i = 0; i < length; i += 1) {
+      for (const i in menu) {
         if (button_id == menu[i].button_id) {
           if (this.checkItems(menu[i].button_id)) {
             this.updateItem(menu[i].button_id);
@@ -110,6 +101,15 @@
 
               break;
           }
+        }
+      }
+    },
+
+    //Returns false if the a menu item has already been added to items
+    checkItems(button_id) {
+      for (const i in this.items) {
+        if (button_id == this.items[i].spesh_id) {
+          return true;
         }
       }
     },
