@@ -14,12 +14,6 @@
 
     </f7-navbar>
 
-    <!-- Toolbar
-    <f7-toolbar bottom>
-      <f7-link login-screen-open="#my-login-screen">Sign out</f7-link>
-    </f7-toolbar>
-    -->
-
     <f7-block strong style="margin-top: 0px; margin-bottom: 0px; display: flex; flex-wrap: wrap;">
 
           <f7-button large fill color="blue"
