@@ -4,11 +4,9 @@
   <!-- Left panel with cover effect when hidden -->
   <f7-panel right cover theme-dark :visible-breakpoint="960">
     <f7-view>
-      <f7-page>
 
         <side-panel></side-panel>
 
-      </f7-page>
     </f7-view>
   </f7-panel>
 
@@ -45,21 +43,12 @@
 
   export default {
 
-    items: [],
-    options:
-    [{
-      id: 0,
-      item: 1,
-      name: 'Extra Something',
-    },
-    {
-      id: 1,
-      item: 2,
-      name: 'Something else',
-    }],
+    items: [], // aka the basket, this is displayed as list in sidepanel component
     nextItemID: 1,
 
-    //button_id passed in from button from category page
+    // DO SOME OBJECT DESTRUCTERING
+    // YOU CAN USE ARROW FUNCTIONS
+    // pushes selected menu item from menu.js to items
     getItem(button_id) {
       let length = menu.length;
 
@@ -86,7 +75,7 @@
       }
     },
 
-    //Returns false if the a menu item has already been added to items
+    // returns false if the a menu item has already been added to items
     checkItems(button_id) {
       for (const i in this.items) {
         if (button_id == this.items[i].spesh_id) {
@@ -95,6 +84,7 @@
       }
     },
 
+    // instead of adding new item to items it updates the quantity and price 
     updateItem(spesh_id) {
       for (const i in this.items) {
         if (spesh_id == this.items[i].spesh_id) {
@@ -103,8 +93,7 @@
 
           Vue.set(this.items, 'price', (this.items[i].price=newPrice));
           Vue.set(this.items, 'quantity', this.items[i].quantity++);
-          //console.table(this.items);
-          //console.table(menu);
+          
         }
       }
     },
@@ -115,6 +104,7 @@
 
     data() {
       return {
+
         // Framework7 Parameters
         f7params: {
           id: 'io.framework7.myapp', // App bundle ID
@@ -139,7 +129,7 @@
     },
 
     methods: {
-
+    
     },
 
     mounted() {
