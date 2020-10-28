@@ -45,6 +45,7 @@
 
     items: [], // aka the basket, this is displayed as list in sidepanel component
     nextItemID: 1,
+    options: [],
 
     // DO SOME OBJECT DESTRUCTERING
     // YOU CAN USE ARROW FUNCTIONS
@@ -67,7 +68,7 @@
               quantity: 1, });
 
               console.table(this.items);
-              console.table(menu);
+              //console.table(menu);
 
               break;
           }

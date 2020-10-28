@@ -18,12 +18,10 @@
             v-on:click="removeItem(index)">
             </f7-button>
 
-            <f7-accordion-content>
-
+            <f7-accordion-content>           
             <template v-for="(n, index) in item.quantity">
-              <f7-list-item :title="index + 1" :key="index" :link="item | toUrl"></f7-list-item>
+                <f7-list-item :title="index + 1" :key="index" :link="item | toUrl"></f7-list-item>             
             </template>
-
             </f7-accordion-content>
 
           </f7-list-item>
@@ -113,7 +111,7 @@ export default {
       options: App.options,
 
       // Subtotal of all items in items
-      minimise: true,
+      minimise: false,
 
       total: '',
       titlePrefix: 'Total: ',
@@ -187,7 +185,7 @@ export default {
 
   filters: {
       toUrl(item) {
-        return `/options/${item.id}/`;
+        return `/options/${item.name}/`;
       },
     },
 
