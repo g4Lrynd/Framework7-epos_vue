@@ -20,30 +20,9 @@
 
             <f7-accordion-content>
 
-              <f7-block>
-
-                <template v-for="(n, index) in item.quantity">
-
-                  <f7-list-item :key="index" :title="index+1" smart-select :smart-select-params="{openIn: 'page'}">
-                    <select name="options" multiple>
-                      <optgroup label="Extras">
-                        <option value="cheese">Extra Cheese</option>
-                        <option value="egg">Extra egg</option>
-                      </optgroup>
-                      <optgroup label="Sauces">
-                        <option value="Extra ketch">Extra Ketch</option>
-                        <option value="No mayo">Extra Mayo</option>
-                      </optgroup>
-                      <optgroup label="Remove">
-                        <option value="No ketch">Remove Ketch</option>
-                        <option value="No mayo">Remove Mayo</option>
-                      </optgroup>
-                    </select>
-                  </f7-list-item>
-
-                </template>
-
-              </f7-block>
+            <template v-for="(n, index) in item.quantity">
+              <f7-list-item :title="index + 1" :key="index" :link="item | toUrl"></f7-list-item>
+            </template>
 
             </f7-accordion-content>
 
@@ -51,8 +30,6 @@
 
         </f7-list>
       </f7-page-content>
-
-
 
     <f7-block v-show="minimise" strong bottom style="padding-right: 12%; padding-left: 12%; margin-bottom: 0px; position: fixed; width: 100%; bottom: 0;">
 
@@ -206,6 +183,14 @@ export default {
       }
       // Call F7 APIs here
     });
-  }
+  },
+
+  filters: {
+      toUrl(item) {
+        return `/options/${item.id}/`;
+      },
+    },
+
 }
+
 </script>

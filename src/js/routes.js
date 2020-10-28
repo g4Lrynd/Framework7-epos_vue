@@ -1,5 +1,5 @@
 import HomePage from '../pages/home.vue';
-import Sapindaceae from '../pages/sapindaceae.vue';
+import Options from '../pages/options.vue';
 import DynamicRoutePage from '../pages/dynamic-route.vue';
 import RequestAndLoad from '../pages/request-and-load.vue';
 import NotFoundPage from '../pages/404.vue';
@@ -12,8 +12,8 @@ var routes = [
     master: true,
   },
   {
-    path: '/sapindaceae/',
-    component: Sapindaceae,
+    path: '/options/:id/',
+    component: Options,
   },
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',
