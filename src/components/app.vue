@@ -45,10 +45,8 @@
 
     items: [], // aka the basket, this is displayed as list in sidepanel component
     nextItemID: 1,
-    options: [],
 
     // DO SOME OBJECT DESTRUCTERING
-    // YOU CAN USE ARROW FUNCTIONS
     // pushes selected menu item from menu.js to items
     getItem(button_id) {
       let length = menu.length;
@@ -64,7 +62,7 @@
               id: this.nextItemID++,
               name: menu[i].name,
               price: menu[i].price,
-              spesh_id: menu[i].button_id,
+              item_id: menu[i].button_id,
               quantity: 1, });
 
               console.table(this.items);
@@ -79,16 +77,16 @@
     // returns false if the a menu item has already been added to items
     checkItems(button_id) {
       for (const i in this.items) {
-        if (button_id == this.items[i].spesh_id) {
+        if (button_id == this.items[i].item_id) {
           return true;
         }
       }
     },
 
     // instead of adding new item to items it updates the quantity and price 
-    updateItem(spesh_id) {
+    updateItem(item_id) {
       for (const i in this.items) {
-        if (spesh_id == this.items[i].spesh_id) {
+        if (item_id == this.items[i].item_id) {
           var newPrice = (this.items[i].quantity * menu[i].price)+menu[i].price;
           newPrice = parseFloat(newPrice.toFixed(2));
 

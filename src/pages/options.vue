@@ -1,17 +1,17 @@
 <template>
   <f7-page>
-    <f7-navbar :title="this.$f7route.params.id" back-link="Back"></f7-navbar>
+    <f7-navbar :title="pageId" back-link="Back"></f7-navbar>
     <f7-block strong style="margin: 0px; padding: 0px">
 
-      <f7-list v-for="cat in optionsCats">
+      <f7-list v-for="cat in optionsCats" :key="cat.id">
       <f7-list-item divider :title="cat.name"></f7-list-item>
       <f7-list-item 
       v-for="i in options"
       v-if="cat.id == i.category"
       :key="i.id"
-      :title="count1 +' '+ i.name" 
+      :title="itemOptions[0][1].count1 +' '+ i.name" 
       >
-        <f7-stepper :buttons-only="true" small raised bg-color="gray" color="black" slot="after" @stepper:change="set1"></f7-stepper>
+        <f7-stepper :buttons-only="true" small raised bg-color="gray" color="black" slot="after" @stepper:change="setQuantity"></f7-stepper>
       </f7-list-item>
 
     </f7-list>
@@ -30,9 +30,19 @@ export default {
   data() {
     return {
 
+      pageId: this.$f7route.params.id,
       count1: 0,
-      count2: 0,
-      itemOptions: App.options,
+
+      itemOptions: 
+      [
+        {
+          name: 'test',
+          1: {
+            count1: 0,
+          },
+        }
+      ],
+
       options: Options,
       optionsCats: OptionsCategories,
 
@@ -42,8 +52,11 @@ export default {
   },
   methods: {
 
-    set1(value) {
-      this.count1 = value;
+   setQuantity(value) {
+      let options = {};
+      this.itemOptions[0]['options'] = [{quantity: 3}];
+
+      console.log(this.itemOptions[0]);
     },
   }
 };
