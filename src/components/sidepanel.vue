@@ -7,7 +7,7 @@
 
         <f7-list list accordion-opposite style="margin: 0em; max-height: 50%">
           <f7-list-item accordion-item
-          v-for="(item, index) in items"
+          v-for="(item, pos) in items"
           :key="item.id"
           :title="item.quantity + ' ' + item.name"
           >
@@ -15,13 +15,11 @@
             icon-f7="multiply"
             icon-color="pink"
             icon-size="23px"
-            v-on:click="removeItem(index)">
+            v-on:click="removeItem(pos)">
             </f7-button>
 
             <f7-accordion-content>           
-            <template v-for="(n, index) in item.quantity">
-                <f7-list-item :title="index + 1" :key="index" :link="item | toUrl"></f7-list-item>             
-            </template>
+                <f7-list-item v-for="(n, index) in item.quantity" :title="index + 1" :key="index" :link="`/options/${pos}/${index+1}`"></f7-list-item>             
             </f7-accordion-content>
 
           </f7-list-item>
@@ -122,8 +120,8 @@ export default {
   },
   methods: {
 
-    removeItem(index) {
-      this.$delete(this.items, index);
+    removeItem(pos) {
+      this.$delete(this.items, pos);
     },
 
     round(unrounded) {
@@ -182,12 +180,6 @@ export default {
       // Call F7 APIs here
     });
   },
-
-  filters: {
-      toUrl(item) {
-        return `/options/${item.name}/`;
-      },
-    },
 
 }
 

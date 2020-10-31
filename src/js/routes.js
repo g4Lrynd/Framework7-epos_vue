@@ -12,7 +12,7 @@ var routes = [
     master: true,
   },
   {
-    path: '/options/:id/',
+    path: '/options/:index/:id',
     component: Options,
   },
   {

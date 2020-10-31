@@ -1,6 +1,6 @@
 <template>
   <f7-page>
-    <f7-navbar :title="pageId" back-link="Back"></f7-navbar>
+    <f7-navbar :title="this.items[itemId].name" back-link="Back"></f7-navbar>
     <f7-block strong style="margin: 0px; padding: 0px">
 
       <f7-list v-for="cat in optionsCats" :key="cat.id">
@@ -9,9 +9,9 @@
       v-for="i in options"
       v-if="cat.id == i.category"
       :key="i.id"
-      :title="itemOptions[0][1].count1 +' '+ i.name" 
+      :title="count +' '+ i.name" 
       >
-        <f7-stepper :buttons-only="true" small raised bg-color="gray" color="black" slot="after" @stepper:change="setQuantity"></f7-stepper>
+        <f7-stepper :buttons-only="true" small raised bg-color="gray" color="black" slot="after" @stepper:change="setQuantity(i.name)"></f7-stepper>
       </f7-list-item>
 
     </f7-list>
@@ -29,22 +29,14 @@ import OptionsCategories from '../js/optionCategories.js'
 export default {
   data() {
     return {
+      pageId: this.$f7route.params.id, // index of the items inside accordian in sidepanel.vue
+      itemId: this.$f7route.params.index, // index of the item in items array, points to WHAT item
 
-      pageId: this.$f7route.params.id,
-      count1: 0,
+      items: App.items,
+      count: 0,
 
-      itemOptions: 
-      [
-        {
-          name: 'test',
-          1: {
-            count1: 0,
-          },
-        }
-      ],
-
-      options: Options,
-      optionsCats: OptionsCategories,
+      options: Options, // used to populate options in options.js
+      optionsCats: OptionsCategories, // same but for categories
 
       // find item id and pass it here 
       //item: Service.getDish(this.$f7route.params.id),
@@ -52,11 +44,9 @@ export default {
   },
   methods: {
 
-   setQuantity(value) {
-      let options = {};
-      this.itemOptions[0]['options'] = [{quantity: 3}];
-
-      console.log(this.itemOptions[0]);
+   setQuantity(i, value) {
+      this.items[this.itemId][this.pageId].push({name: i})
+      console.table(this.items[this.itemId][this.pageId])
     },
   }
 };
