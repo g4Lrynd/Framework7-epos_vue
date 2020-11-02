@@ -14,6 +14,7 @@ var routes = [
   {
     path: '/options/:index/:id',
     component: Options,
+    //keepAlive: true,
   },
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',

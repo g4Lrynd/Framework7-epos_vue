@@ -19,9 +19,7 @@
             </f7-button>
 
             <f7-accordion-content>           
-                <f7-list-item v-for="(n, index) in item.quantity" :title="index+1" :key="index" :link="`/options/${pos}/${index+1}`">
-                <!--<p slot="after">{{ items[pos][index+1] }}</p> -->
-                </f7-list-item>             
+                <f7-list-item v-for="(n, index) in item.quantity" :title="index+1" :key="index" :link="`/options/${pos}/${index+1}`"></f7-list-item>             
             </f7-accordion-content>
 
           </f7-list-item>

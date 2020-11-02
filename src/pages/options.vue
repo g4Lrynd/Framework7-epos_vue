@@ -9,11 +9,11 @@
       v-for="(i, index) in options"
       v-if="cat.id == i.category"
       :key="i.id"
-      :title="(map[i.name] || 0 )+' '+ i.name" 
+      :title="(items[itemId][pageId][i.name] || 0 )+' '+ i.name" 
       >
         <f7-stepper small raised bg-color="gray" color="black" slot="after" 
         :buttons-only="true" 
-        @stepper:change="setQuantity(i.name, index, $event)"
+        @stepper:change="setQuantity(i.name, $event)"
         ></f7-stepper>
 
       </f7-list-item>
@@ -52,29 +52,12 @@ export default {
   
   methods: {
 
-    setQuantity(name, index, value) {
+    setQuantity(name, value) {
       let options = this.items[this.itemId][this.pageId];
 
-      if (options.some(option => option.name === name)) {
-        options[index].quantity = value;
-        //Vue.set(options[index], 'quantity', value);
-
-        this.map.set(options[index].name, value);
-  
-        console.log(this.map);
-      }
-      else {
-        options.push({
-        id: this.nextId++,
-        name: name,
-        quantity: value,
-        });
-      }
-      //Vue.set(this.map, options[index].name, value);
-      this.map.set(options[index].name, value);
-      console.log(this.map);     
+      Vue.set(options, name, value); 
+      console.log(options[name]);
     },
-
   }
 };
 </script>
