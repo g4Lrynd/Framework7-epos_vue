@@ -64,7 +64,7 @@
               price: menu[i].price,
               item_id: menu[i].button_id,
               quantity: 1,
-              1: [],});
+              1: {},});
 
               console.log(this.items);
               //console.table(menu);
@@ -92,7 +92,7 @@
           var newPrice = (this.items[i].quantity * menu[i].price)+menu[i].price;
           newPrice = parseFloat(newPrice.toFixed(2));
 
-          this.items[i][quantity+1] = [];
+          this.items[i][quantity+1] = {};
 
           Vue.set(this.items, 'price', (this.items[i].price=newPrice));
           Vue.set(this.items, 'quantity', this.items[i].quantity++);

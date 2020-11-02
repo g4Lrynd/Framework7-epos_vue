@@ -1,17 +1,21 @@
 <template>
   <f7-page>
-    <f7-navbar :title="this.items[itemId].name" back-link="Back"></f7-navbar>
+    <f7-navbar :title="this.items[itemId].name + ' ' + pageId" back-link="Back"></f7-navbar>
     <f7-block strong style="margin: 0px; padding: 0px">
 
       <f7-list v-for="cat in optionsCats" :key="cat.id">
       <f7-list-item divider :title="cat.name"></f7-list-item>
       <f7-list-item 
-      v-for="i in options"
+      v-for="(i, index) in options"
       v-if="cat.id == i.category"
       :key="i.id"
-      :title="count +' '+ i.name" 
+      :title="(map[i.name] || 0 )+' '+ i.name" 
       >
-        <f7-stepper :buttons-only="true" small raised bg-color="gray" color="black" slot="after" @stepper:change="setQuantity(i.name)"></f7-stepper>
+        <f7-stepper small raised bg-color="gray" color="black" slot="after" 
+        :buttons-only="true" 
+        @stepper:change="setQuantity(i.name, index, $event)"
+        ></f7-stepper>
+
       </f7-list-item>
 
     </f7-list>
@@ -23,31 +27,54 @@
 
 import App from '../components/app.vue';
 import sidepanel from '../components/sidepanel.vue';
-import Options from '../js/options.js'
-import OptionsCategories from '../js/optionCategories.js'
+import Options from '../js/options.js';
+import OptionsCategories from '../js/optionCategories.js';
+import Vue from 'vue';
 
 export default {
   data() {
     return {
+      options: Options, // used to populate options from options.js
+      optionsCats: OptionsCategories, // same but for categories
       pageId: this.$f7route.params.id, // index of the items inside accordian in sidepanel.vue
       itemId: this.$f7route.params.index, // index of the item in items array, points to WHAT item
 
       items: App.items,
-      count: 0,
-
-      options: Options, // used to populate options in options.js
-      optionsCats: OptionsCategories, // same but for categories
-
-      // find item id and pass it here 
-      //item: Service.getDish(this.$f7route.params.id),
+      nextId: 5,
+      //map: new Map(),
+      map: new Map(),
     };
   },
+
+  computed: {
+    
+  },
+  
   methods: {
 
-   setQuantity(i, value) {
-      this.items[this.itemId][this.pageId].push({name: i})
-      console.table(this.items[this.itemId][this.pageId])
+    setQuantity(name, index, value) {
+      let options = this.items[this.itemId][this.pageId];
+
+      if (options.some(option => option.name === name)) {
+        options[index].quantity = value;
+        //Vue.set(options[index], 'quantity', value);
+
+        this.map.set(options[index].name, value);
+  
+        console.log(this.map);
+      }
+      else {
+        options.push({
+        id: this.nextId++,
+        name: name,
+        quantity: value,
+        });
+      }
+      //Vue.set(this.map, options[index].name, value);
+      this.map.set(options[index].name, value);
+      console.log(this.map);     
     },
+
   }
 };
 </script>

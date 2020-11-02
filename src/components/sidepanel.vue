@@ -19,7 +19,9 @@
             </f7-button>
 
             <f7-accordion-content>           
-                <f7-list-item v-for="(n, index) in item.quantity" :title="index + 1" :key="index" :link="`/options/${pos}/${index+1}`"></f7-list-item>             
+                <f7-list-item v-for="(n, index) in item.quantity" :title="index+1" :key="index" :link="`/options/${pos}/${index+1}`">
+                <!--<p slot="after">{{ items[pos][index+1] }}</p> -->
+                </f7-list-item>             
             </f7-accordion-content>
 
           </f7-list-item>
@@ -162,10 +164,12 @@ export default {
         this.change = '£' + (this.round(this.change));
         this.current = '';
         this.items.splice(0, this.items.length);
+
         this.$root.$on('update', (data) => {
           this.saleEnd = false;
           this.titlePrefix = 'Total: ';
         });
+        
         console.log(this.saleEnd);
       }
     },
