@@ -52,7 +52,7 @@
 
       for (const i in menu) {
         const { name, price, button_id } = menu[i];
-
+        
         if (id == button_id) {
           if (this.checkItems(button_id)) {
             this.updateItem(button_id);
@@ -93,10 +93,7 @@
 
           Vue.set(this.items, 'price', (this.items[i].price = newPrice));
           Vue.set(this.items, 'quantity', this.items[i].quantity++);
-
-          //this.items[i][quantity+1] = {};
-          Vue.set(this.items[i], quantity+1, {});
-          console.log(this.items);
+          Vue.set(this.items[i], quantity+1, {});          
         }
       }
     },

@@ -1,11 +1,10 @@
 <template>
   <f7-page name="home">
-    <!-- Top Navbar -->
     <f7-navbar>
       <f7-nav-title sliding>Menu</f7-nav-title>
-    <f7-nav-right style="margin-right: 16px;">
+    <f7-nav-right class="destiny-nav">
 
-      <f7-segmented strong style="width: 220px">
+      <f7-segmented strong class="destiny-button">
         <f7-button v-on:click="isActive=false">Take out</f7-button>
         <f7-button v-bind:class="{ 'button-active': isActive }" v-on:click="isActive=true">Eat in</f7-button>
       </f7-segmented>
@@ -14,7 +13,7 @@
 
     </f7-navbar>
 
-    <f7-block strong style="margin-top: 0px; margin-bottom: 0px; display: flex; flex-wrap: wrap;">
+    <f7-block strong class="categories-block">
 
           <f7-button large fill color="blue"
           v-for="(category, index) in categories"
@@ -23,11 +22,11 @@
           >{{ category.name }}</f7-button>
 
     </f7-block>
-    <!-- Page content-->
+    <!-- page content-->
 
-      <!--<f7-view class="view-bottom" url="/dynamic-route/" data-view="current"></f7-view>-->
-      <f7-block-title style="font-size: 17px;">{{ title }}</f7-block-title>
-      <f7-block strong style="display: flex; flex-wrap: wrap;">
+      <f7-block-title class="category-title">{{ title }}</f7-block-title>
+
+      <f7-block strong class="items-block">
 
         <f7-button large fill color="lightblue"
         v-for="(item, index) in menu"
@@ -82,7 +81,7 @@ import App from '../components/app.vue';
       },
 
       finalDestiny() {
-        if (this.isActive == true) {
+        if (this.isActive === true) {
           this.eatDestination = "Eat In";
           return this.eatDestination;
         }

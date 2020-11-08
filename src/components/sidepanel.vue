@@ -3,17 +3,16 @@
     <f7-page id="SidePanel">
       <f7-navbar v-bind:title="titlePrefix">{{ saleEnd ? change : itemsTotal() }}</f7-navbar>
 
-      <f7-page-content style="margin: 0em; padding: 0em; height: 100%;">
+      <f7-page-content class="panel-page">
 
-        <f7-list list accordion-opposite style="margin: 0em; max-height: 50%">
+        <f7-list list accordion-opposite>
           <f7-list-item accordion-item
           v-for="(item, pos) in items"
           :key="item.id"
           :title="item.quantity + ' ' + item.name"
           >
-            <f7-button 
-            slot="after" 
-            style="padding-right: 0px"
+            <f7-button class="remove-button"
+            slot="after"
             icon-f7="multiply"
             icon-color="pink"
             icon-size="23px"
@@ -26,6 +25,8 @@
                 :title="index+1" 
                 :key="index" 
                 :link="`/options/${pos}/${index+1}`">
+
+                <!--<p slot="after">{{ items[pos][index+1] }}</p>-->
                 </f7-list-item>             
             </f7-accordion-content>
 
@@ -34,11 +35,11 @@
         </f7-list>
       </f7-page-content>
 
-    <f7-block v-show="minimise" strong bottom style="padding-right: 12%; padding-left: 12%; margin-bottom: 0px; position: fixed; width: 100%; bottom: 0;">
+    <f7-block v-show="minimise" strong bottom class="keypad-block">
 
-      <f7-block style="margin: 0px; padding: 0px; ">
-        <f7-block-title type="number" style="margin-bottom: 10px; padding: 5px; font-size: 1.4em; display: inline-block">£{{ current || '0.00' }}</f7-block-title>
-        <f7-button style="float: right; display: inline-block; padding: 0px"
+      <f7-block class="block-header">
+        <f7-block-title type="number" class="current">£{{ current || '0.00' }}</f7-block-title>
+        <f7-button class="keypad-minimise"
           small
           icon-f7="arrow_down_square"
           icon-color="gray"
@@ -72,19 +73,19 @@
             <br>
             <f7-button fill color="gray" v-on:click="keypad(6)">6</f7-button>
             <br>
-            <f7-button fill color="gray" v-on:click="keypad(3)" id="3">3</f7-button>
+            <f7-button fill color="gray" v-on:click="keypad(3)">3</f7-button>
             <br>
             <f7-button fill color="pink" v-on:click="current = 0">CLR</f7-button>
           </f7-col>
          </f7-row>
        
-        <f7-block  style="padding: 0em; margin-top: 20px; margin-bottom: 0px">
+        <f7-block class="cash-button">
           <f7-button fill color="green" v-on:click="reset()">Cash</f7-button>
         </f7-block>
 
     </f7-block>
 
-    <f7-block v-show="!minimise" strong bottom style="padding-right: 12%; padding-left: 12%; margin-bottom: 0px; position: fixed; width: 100%; bottom: 0;">
+    <f7-block v-show="!minimise" strong bottom class="keypad-block">
 
           <f7-button 
           fill color="gray" 
