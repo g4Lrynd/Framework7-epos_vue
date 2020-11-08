@@ -44,37 +44,35 @@
   export default {
 
     items: [], // aka the basket, this is displayed as list in sidepanel component
-    nextItemID: 1,
+    nextItemID: 1, // gives each added item a unique id
 
-    // DO SOME OBJECT DESTRUCTERING
-    // pushes selected menu item from menu.js to items
-    getItem(button_id) {
+    // used by menu item buttons in home.vue and pushes selected menu item from menu.js to items 
+    getItem(id) {
       let length = menu.length;
 
       for (const i in menu) {
-        if (button_id == menu[i].button_id) {
-          if (this.checkItems(menu[i].button_id)) {
-            this.updateItem(menu[i].button_id);
+        const { name, price, button_id } = menu[i];
+
+        if (id == button_id) {
+          if (this.checkItems(button_id)) {
+            this.updateItem(button_id);
           }
           else {
             this.items.push({
-
               id: this.nextItemID++,
-              name: menu[i].name,
-              price: menu[i].price,
-              item_id: menu[i].button_id,
+              name: name,
+              price: price,
+              item_id: button_id,
               quantity: 1,
-              1: {},});
-
-              console.log(this.items);
-              //console.table(menu);
+              1: {},
+              });
 
               break;
           }
         }
       }
     },
-
+    
     // returns false if the a menu item has already been added to items
     checkItems(button_id) {
       for (const i in this.items) {
@@ -85,18 +83,20 @@
     },
 
     // instead of adding new item to items it updates the quantity and price 
-    updateItem(item_id) {
+    updateItem(id) {
       for (const i in this.items) {
-        if (item_id == this.items[i].item_id) {
-          let quantity = this.items[i].quantity;
-          var newPrice = (this.items[i].quantity * menu[i].price)+menu[i].price;
+        const { item_id, quantity, price } = this.items[i];
+
+        if (id == item_id) {
+          var newPrice = (quantity * menu[i].price)+menu[i].price;
           newPrice = parseFloat(newPrice.toFixed(2));
 
-          this.items[i][quantity+1] = {};
-
-          Vue.set(this.items, 'price', (this.items[i].price=newPrice));
+          Vue.set(this.items, 'price', (this.items[i].price = newPrice));
           Vue.set(this.items, 'quantity', this.items[i].quantity++);
-          
+
+          //this.items[i][quantity+1] = {};
+          Vue.set(this.items[i], quantity+1, {});
+          console.log(this.items);
         }
       }
     },

@@ -11,7 +11,9 @@
       :key="i.id"
       :title="(items[itemId][pageId][i.name] || 0 )+' '+ i.name" 
       >
+      
         <f7-stepper small raised bg-color="gray" color="black" slot="after" 
+        :value="items[itemId][pageId][i.name]"
         :buttons-only="true" 
         @stepper:change="setQuantity(i.name, $event)"
         ></f7-stepper>
@@ -41,21 +43,16 @@ export default {
 
       items: App.items,
       nextId: 5,
-      //map: new Map(),
       map: new Map(),
     };
   },
 
-  computed: {
-    
-  },
-  
   methods: {
 
     setQuantity(name, value) {
       let options = this.items[this.itemId][this.pageId];
 
-      Vue.set(options, name, value); 
+      this.$set(options, name, value);
       console.log(options[name]);
     },
   }

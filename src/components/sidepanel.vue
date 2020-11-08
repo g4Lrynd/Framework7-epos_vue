@@ -11,7 +11,9 @@
           :key="item.id"
           :title="item.quantity + ' ' + item.name"
           >
-            <f7-button slot="after" style="padding-right: 0px"
+            <f7-button 
+            slot="after" 
+            style="padding-right: 0px"
             icon-f7="multiply"
             icon-color="pink"
             icon-size="23px"
@@ -19,7 +21,12 @@
             </f7-button>
 
             <f7-accordion-content>           
-                <f7-list-item v-for="(n, index) in item.quantity" :title="index+1" :key="index" :link="`/options/${pos}/${index+1}`"></f7-list-item>             
+                <f7-list-item 
+                v-for="(n, index) in item.quantity" 
+                :title="index+1" 
+                :key="index" 
+                :link="`/options/${pos}/${index+1}`">
+                </f7-list-item>             
             </f7-accordion-content>
 
           </f7-list-item>
