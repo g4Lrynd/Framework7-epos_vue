@@ -16,20 +16,19 @@
     <f7-block strong class="categories-block">
 
           <f7-button large fill color="blue"
-          v-for="(category, index) in categories"
+          v-for="category in categories"
           v-on:click="selecto(category.id, category.name)"
           :key="category.id"
           >{{ category.name }}</f7-button>
 
     </f7-block>
-    <!-- page content-->
 
       <f7-block-title class="category-title">{{ title }}</f7-block-title>
 
       <f7-block strong class="items-block">
 
         <f7-button large fill color="lightblue"
-        v-for="(item, index) in menu"
+        v-for="item in menu"
         v-if="item.category == selection"
         v-on:click="addToItems(item.button_id)"
         :key="item.button_id"
