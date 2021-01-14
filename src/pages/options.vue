@@ -10,12 +10,12 @@
       v-for="(i, index) in options"
       v-if="cat.id == i.category"
       :key="i.id"
-      :title="(items[itemId][pageId][i.name] || 0 )+' '+ i.name" 
+      :title="(items[itemId][pageId][i.name] || 0 )+' '+ i.name"
       >
-      
-        <f7-stepper small raised bg-color="gray" color="black" slot="after" 
+
+        <f7-stepper small raised bg-color="gray" color="black" slot="after"
         :value="items[itemId][pageId][i.name]"
-        :buttons-only="true" 
+        :buttons-only="true"
         @stepper:change="setQuantity(i.name, $event)"
         ></f7-stepper>
 
@@ -52,6 +52,8 @@ export default {
     setQuantity(name, value) {
       let options = this.items[this.itemId][this.pageId];
       this.$set(options, name, value);
+
+      console.log(this.items[this.itemId][this.pageId]);
     },
   }
 };

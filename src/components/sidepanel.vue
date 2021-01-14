@@ -19,15 +19,15 @@
             v-on:click="removeItem(pos)">
             </f7-button>
 
-            <f7-accordion-content>           
-                <f7-list-item 
-                v-for="(n, index) in item.quantity" 
-                :title="index+1" 
-                :key="index" 
+            <f7-accordion-content>
+                <f7-list-item
+                v-for="(n, index) in item.quantity"
+                :title="index+1"
+                :key="index"
                 :link="`/options/${pos}/${index+1}`">
 
-                <!--<p slot="after">{{ items[pos][index+1] }}</p>-->
-                </f7-list-item>             
+                <p slot="after" v-for="(value, name) in items[pos][index+1]" style="margin: 0px">{{ value }} {{ name }}</p>
+                </f7-list-item>
             </f7-accordion-content>
 
           </f7-list-item>
@@ -47,10 +47,10 @@
           v-on:click="minimise = false">
         </f7-button>
       </f7-block>
- 
+
       <f7-row >
           <f7-col>
-            
+
             <f7-button fill color="gray" v-on:click="keypad(7)">7</f7-button>
             <br>
             <f7-button fill color="gray" v-on:click="keypad(4)">4</f7-button>
@@ -78,7 +78,7 @@
             <f7-button fill color="pink" v-on:click="current = 0">CLR</f7-button>
           </f7-col>
          </f7-row>
-       
+
         <f7-block class="cash-button">
           <f7-button fill color="green" v-on:click="reset()">Cash</f7-button>
         </f7-block>
@@ -87,15 +87,15 @@
 
     <f7-block v-show="!minimise" strong bottom class="keypad-block">
 
-          <f7-button 
-          fill color="gray" 
-          icon-material="dialpad" 
-          icon-color="black" 
-          icon-size="25px" 
+          <f7-button
+          fill color="gray"
+          icon-material="dialpad"
+          icon-color="black"
+          icon-size="25px"
           v-on:click="minimise = true">
           </f7-button>
-          
-    </f7-block>    
+
+    </f7-block>
   </f7-page>
 </template>
 <script>
@@ -108,10 +108,10 @@ import menu from '../js/menu.js';
 export default {
   data() {
     return {
-      
+
       // Keypad output
       current: '',
-     
+
       // Items in list
       items: App.items,
       options: App.options,
@@ -175,7 +175,7 @@ export default {
           this.saleEnd = false;
           this.titlePrefix = 'Total: ';
         });
-        
+
         console.log(this.saleEnd);
       }
     },

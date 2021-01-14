@@ -46,13 +46,13 @@
     items: [], // aka the basket, this is displayed as list in sidepanel component
     nextItemID: 1, // gives each added item a unique id
 
-    // used by menu item buttons in home.vue and pushes selected menu item from menu.js to items 
+    // used by menu item buttons in home.vue and pushes selected menu item from menu.js to items
     getItem(id) {
       let length = menu.length;
 
       for (const i in menu) {
         const { name, price, button_id } = menu[i];
-        
+
         if (id == button_id) {
           if (this.checkItems(button_id)) {
             this.updateItem(button_id);
@@ -72,7 +72,7 @@
         }
       }
     },
-    
+
     // returns false if the a menu item has already been added to items
     checkItems(button_id) {
       for (const i in this.items) {
@@ -82,7 +82,7 @@
       }
     },
 
-    // instead of adding new item to items it updates the quantity and price 
+    // instead of adding new item to items it updates the quantity and price
     updateItem(id) {
       for (const i in this.items) {
         const { item_id, quantity, price } = this.items[i];
@@ -93,7 +93,9 @@
 
           Vue.set(this.items, 'price', (this.items[i].price = newPrice));
           Vue.set(this.items, 'quantity', this.items[i].quantity++);
-          Vue.set(this.items[i], quantity+1, {});          
+          Vue.set(this.items[i], quantity+1, {});
+
+          console.log(this.items[i][quantity+1]);         
         }
       }
     },
@@ -129,7 +131,7 @@
     },
 
     methods: {
-    
+
     },
 
     mounted() {

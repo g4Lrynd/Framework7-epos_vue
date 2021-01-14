@@ -5,6 +5,7 @@
     <f7-nav-right class="destiny-nav">
 
       <f7-segmented strong class="destiny-button">
+        <!-- <f7-button v-on:click="isActive=false">Phone</f7-button> -->
         <f7-button v-on:click="isActive=false">Take out</f7-button>
         <f7-button v-bind:class="{ 'button-active': isActive }" v-on:click="isActive=true">Eat in</f7-button>
       </f7-segmented>
